@@ -9,7 +9,7 @@ else
 fi
 
 
-ORIGINAL_DATE=$(openssl s_client -connect google.com:443 2>/dev/null | openssl x509 -noout -dates 2>/dev/null | grep notAfter | cut -d'=' -f2)
+ORIGINAL_DATE=$(openssl s_client -connect ${SERVER}:${PORT} 2>/dev/null | openssl x509 -noout -dates 2>/dev/null | grep notAfter | cut -d'=' -f2)
 EXPIRE_IN_SECS=$(date -d "${ORIGINAL_DATE}" +%s)
 EXPIRE_TIME=$(( ${EXPIRE_IN_SECS} - `date +%s` ))
 
